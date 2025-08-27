@@ -1,38 +1,151 @@
-.App {
-  text-align: center;
+
+:root {
+  --bg: #f0f4f8;
+  --text: #1a1a1a;
+  --table-bg: #ffffff;
+  --border: #cbd5e1;
+  --primary: #3b82f6;
+  --secondary: #64748b;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #facc15;
+  --toggle: #334155;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app.dark {
+  --bg: #121212;
+  --text: #e5e7eb;
+  --table-bg: #1f2937;
+  --border: #374151;
+  --primary: #60a5fa;
+  --secondary: #94a3b8;
+  --success: #34d399;
+  --danger: #f87171;
+  --warning: #fef08a;
+  --toggle: #475569;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
   min-height: 100vh;
+  padding: 25px;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.3s ease;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 { margin: 0; font-size: 1.8em; }
+p { margin: 5px 0 15px; }
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.wishlist-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--table-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+.wishlist-table th, .wishlist-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 14px;
+  text-align: left;
+  transition: background 0.3s;
+}
+.wishlist-table tr:hover td {
+  background: rgba(59, 130, 246, 0.05);
+}
+.wishlist-table th { background: var(--bg); font-weight: 600; }
+.desc { font-size: 0.85em; color: gray; }
+.empty { text-align: center; padding: 25px; font-style: italic; color: var(--secondary); }
+
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.in-stock { background: #d1fae5; color: #065f46; }
+.out-stock { background: #fee2e2; color: #991b1b; }
+
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 0.9em;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(0);
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.btn:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.primary { background: var(--primary); color: white; }
+.secondary { background: var(--secondary); color: white; }
+.success { background: var(--success); color: white; }
+.danger { background: var(--danger); color: white; }
+.warning { background: var(--warning); color: var(--text); }
+.toggle { background: var(--toggle); color: white; }
+.small { font-size: 0.8em; padding: 5px 10px; }
+
+.store-panel {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  animation: slideDown 0.3s ease;
+}
+
+.store-card {
+  background: var(--table-bg);
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  transition: transform 0.2s ease;
+}
+.store-card:hover {
+  transform: translateY(-3px);
 }
 
-.App-link {
-  color: #61dafb;
+.store-card h4 {
+  margin: 0 0 5px 0;
+  font-size: 1.1em;
+}
+.store-card p { font-size: 0.85em; color: gray; margin: 5px 0; }
+.store-card .price { font-weight: bold; margin-bottom: 10px; }
+.store-card .badge, .store-card .btn { align-self: flex-start; }
+
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
